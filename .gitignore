@@ -1,0 +1,15 @@
+# Environment variables
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+genai_env/
+venv/
+.venv/
+
+# Hugging Face cache
+.cache/
+huggingface/

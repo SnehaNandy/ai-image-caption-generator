@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Image Caption Generator</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="background-glow glow-1"></div>
+    <div class="background-glow glow-2"></div>
+
+    <header class="navbar">
+
+        <div class="logo">
+            <div class="logo-icon">✦</div>
+
+            <div>
+                <h2>CaptionAI</h2>
+                <span>Image Caption Generator</span>
+            </div>
+        </div>
+
+        <div class="status">
+            <span class="status-dot"></span>
+            AI Ready
+        </div>
+
+    </header>
+
+
+    <main class="container">
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <div class="badge">
+                ✨ Powered by BLIP + AI
+            </div>
+
+            <h1>
+                Turn Images Into
+                <span>Meaningful Words.</span>
+            </h1>
+
+            <p>
+                Upload an image and let AI understand what's inside.
+                Get an intelligent description in seconds.
+            </p>
+
+        </section>
+
+
+        <!-- MAIN CARD -->
+
+        <section class="generator-card">
+
+            <!-- UPLOAD -->
+
+            <div class="upload-section">
+
+                <div
+                    class="upload-box"
+                    id="uploadBox"
+                >
+
+                    <input
+                        type="file"
+                        id="imageInput"
+                        accept="image/*"
+                        hidden
+                    >
+
+                    <div class="upload-icon">
+                        ↑
+                    </div>
+
+                    <h3>Upload your image</h3>
+
+                    <p>
+                        Drag & drop your image here
+                    </p>
+
+                    <span class="or">
+                        or
+                    </span>
+
+                    <button
+                        class="browse-btn"
+                        id="browseBtn"
+                    >
+                        Choose Image
+                    </button>
+
+                    <small>
+                        JPG, JPEG or PNG • Max 10MB
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- IMAGE PREVIEW -->
+
+            <div
+                class="preview-section"
+                id="previewSection"
+            >
+
+                <div class="section-title">
+
+                    <span>Image Preview</span>
+
+                    <button
+                        class="remove-btn"
+                        id="removeBtn"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+                <div class="image-wrapper">
+
+                    <img
+                        id="previewImage"
+                        src=""
+                        alt="Image preview"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- GENERATE BUTTON -->
+
+            <button
+                id="generateBtn"
+                class="generate-btn"
+                disabled
+            >
+
+                <span class="btn-icon">✦</span>
+
+                <span id="btnText">
+                    Generate Caption
+                </span>
+
+            </button>
+
+
+            <!-- LOADING -->
+
+            <div
+                class="loading"
+                id="loading"
+            >
+
+                <div class="spinner"></div>
+
+                <p>
+                    AI is analyzing your image...
+                </p>
+
+                <span>
+                    This may take a few seconds
+                </span>
+
+            </div>
+
+
+            <!-- RESULT -->
+
+            <div
+                class="result-card"
+                id="resultCard"
+            >
+
+                <div class="result-header">
+
+                    <div class="result-title">
+
+                        <div class="ai-icon">
+                            ✦
+                        </div>
+
+                        <div>
+                            <h3>AI Generated Caption</h3>
+                            <span>BLIP Vision Model</span>
+                        </div>
+
+                    </div>
+
+                    <button
+                        id="copyBtn"
+                        class="copy-btn"
+                    >
+                        📋 Copy
+                    </button>
+
+                </div>
+
+
+                <div class="caption-box">
+
+                    <p id="captionText">
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FEATURES -->
+
+        <section class="features">
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    👁️
+                </div>
+
+                <div>
+                    <h4>Vision AI</h4>
+                    <p>Understands your images</p>
+                </div>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    ⚡
+                </div>
+
+                <div>
+                    <h4>Fast Processing</h4>
+                    <p>Generate captions quickly</p>
+                </div>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🔒
+                </div>
+
+                <div>
+                    <h4>Private</h4>
+                    <p>Images aren't stored</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+
+            <p>
+                Built with
+                <strong>FastAPI</strong>
+                +
+                <strong>BLIP</strong>
+                +
+                <strong>PyTorch</strong>
+            </p>
+
+        </footer>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

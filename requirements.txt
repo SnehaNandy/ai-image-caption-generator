@@ -1,0 +1,11 @@
+torch
+torchvision
+transformers
+diffusers
+accelerate
+sentence-transformers
+faiss-cpu
+datasets
+soundfile
+pillow
+numpy
