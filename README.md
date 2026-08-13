@@ -1,44 +1,139 @@
-# 8 Generative AI Projects (Open-Source, Local, HuggingFace/PyTorch)
+# AI Image Caption Generator
 
-All projects run **locally** using open-source models from Hugging Face — no API keys needed.
-GPU (CUDA) is recommended but most will run on CPU (slower). Notes on this are in each script.
+An AI-powered image caption generation web application that combines **BLIP (Bootstrapping Language-Image Pre-training)** with a **Hugging Face-hosted Large Language Model** to generate natural, clear, and descriptive captions for uploaded images.
 
-## Setup
+The application uses BLIP to understand the visual content of an image and generate an initial caption. A Hugging Face LLM then improves the caption to make it more natural, grammatically correct, concise, and readable.
 
-```bash
-python -m venv genai_env
-source genai_env/bin/activate      # Windows: genai_env\Scripts\activate
-pip install -r requirements.txt
-```
+---
 
-First run of each script will download the model weights (a few hundred MB to a few GB
-depending on the project) — this only happens once, then they're cached locally
-(`~/.cache/huggingface`).
+## 📌 Project Overview
 
-## Projects
+Image captioning is a computer vision and natural language processing task in which an AI system analyzes an image and generates a textual description of its contents.
 
-| # | File | What it does | Core library |
-|---|------|---------------|---------------|
-| 1 | `01_text_generation_gpt2.py` | Auto-completes/generates text from a prompt | `transformers` (GPT-2) |
-| 2 | `02_text_summarization_bart.py` | Condenses long text into a summary | `transformers` (BART) |
-| 3 | `03_image_generation_stable_diffusion.py` | Generates an image from a text prompt | `diffusers` (Stable Diffusion) |
-| 4 | `04_image_captioning_blip.py` | Generates a caption describing an image | `transformers` (BLIP) |
-| 5 | `05_chatbot_dialogpt.py` | Multi-turn conversational chatbot | `transformers` (DialoGPT) |
-| 6 | `06_rag_qa_system.py` | Answers questions using your own documents (RAG) | `sentence-transformers` + `faiss` + FLAN-T5 |
-| 7 | `07_gan_mnist.py` | Trains a GAN from scratch to generate digit images | `torch`, `torchvision` (DCGAN) |
-| 8 | `08_text_to_speech_speecht5.py` | Converts text into spoken audio | `transformers` (SpeechT5) |
+This project implements a two-stage AI pipeline:
 
-## Recommended order
+**Image → BLIP → Raw Caption → Hugging Face LLM → Improved Caption**
 
-Start with **1 → 2 → 4** (simplest, fastest, CPU-friendly), then **5 → 6** (more logic),
-then **3 → 8** (heavier downloads/compute), and finish with **7** (trains a model from
-scratch — most educational, but takes the longest).
+### How it works
 
-## Common issues
+1. The user uploads an image through the web interface.
+2. The frontend sends the image to the FastAPI backend.
+3. The BLIP image captioning model analyzes the image.
+4. BLIP generates a raw image caption.
+5. The raw caption is sent to a Hugging Face-hosted LLM.
+6. The LLM improves the caption while avoiding unsupported details.
+7. The final caption is returned to the frontend and displayed to the user.
 
-- **"CUDA out of memory"** — switch `device` to `"cpu"` in the script, or use a smaller
-  model variant (noted in comments where relevant).
-- **Slow on CPU** — expected for Stable Diffusion (project 3) and SpeechT5 (project 8);
-  everything else runs fine on a laptop CPU.
-- **`ModuleNotFoundError`** — make sure your venv is activated and
-  `pip install -r requirements.txt` completed without errors.
+---
+
+## ✨ Features
+
+- 🖼️ Upload an image through a web interface
+- 🤖 AI-powered image caption generation
+- 👁️ BLIP-based image understanding
+- ✨ AI-powered caption refinement
+- 📝 Natural and grammatically correct captions
+- ⚡ FastAPI backend
+- 🌐 HTML, CSS and JavaScript frontend
+- 🔗 REST API communication between frontend and backend
+- 🔐 Hugging Face API authentication using environment variables
+- 💻 Runs locally on Windows
+- 📚 Interactive API documentation through FastAPI Swagger UI
+
+---
+
+## 🛠️ Technologies Used
+
+### Backend
+
+- **Python**
+- **FastAPI**
+- **Uvicorn**
+- **PyTorch**
+- **Transformers**
+- **Pillow**
+- **Hugging Face Hub**
+- **python-dotenv**
+
+### AI Models
+
+#### BLIP
+
+**Model:** `Salesforce/blip-image-captioning-base`
+
+BLIP is responsible for analyzing the uploaded image and generating the initial caption.
+
+#### Hugging Face LLM
+
+**Model:** `openai/gpt-oss-120b`
+
+The LLM receives the raw BLIP caption and improves its clarity, grammar, and naturalness.
+
+### Frontend
+
+- HTML5
+- CSS3
+- JavaScript
+
+---
+
+## 🏗️ Project Architecture
+
+```text
+                    ┌─────────────────────┐
+                    │      User           │
+                    │   Uploads Image     │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │      Frontend       │
+                    │ HTML + CSS + JS     │
+                    └──────────┬──────────┘
+                               │
+                         HTTP POST Request
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │     FastAPI         │
+                    │      Backend        │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │       BLIP          │
+                    │ Image Caption Model │
+                    └──────────┬──────────┘
+                               │
+                          Raw Caption
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │    Hugging Face     │
+                    │        LLM          │
+                    └──────────┬──────────┘
+                               │
+                        Improved Caption
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │      Frontend       │
+                    │ Display Result      │
+                    └─────────────────────┘
+
+
+#PROJECT STRUCTURE
+
+ai-image-caption-generator/
+│
+├── backend/
+│   └── main.py
+│
+├── frontend/
+│   ├── index.html
+│   ├── script.js
+│   └── style.css
+│
+├── .gitignore
+├── README.md
+└── requirements.txt
