@@ -71,8 +71,8 @@ The LLM receives the raw BLIP caption and improves its clarity, grammar, and nat
 
 ### Frontend
 
-- HTML5
-- CSS3
+- HTML
+- CSS
 - JavaScript
 
 ---
@@ -122,7 +122,7 @@ The LLM receives the raw BLIP caption and improves its clarity, grammar, and nat
                     └─────────────────────┘
 
 
-#PROJECT STRUCTURE
+## PROJECT STRUCTURE
 
 ai-image-caption-generator/
 │
